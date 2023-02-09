@@ -14,5 +14,7 @@ steps:
       output_location: 'public' # Built app content directory relative to app_location - optional
       cwd: '$(System.DefaultWorkingDirectory)' # Working directory - optional
       azure_static_web_apps_api_token: $(deployment_token)
+  - bash: |
+      echo "${TOKEN}"
     env:
-      azure_static_web_apps_api_token: $(deployment_token)
+      TOKEN: $(deployment_token)
