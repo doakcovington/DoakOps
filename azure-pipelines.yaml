@@ -15,6 +15,6 @@ steps:
       cwd: '$(System.DefaultWorkingDirectory)' # Working directory - optional
       azure_static_web_apps_api_token: $(deployment_token)
   - bash: |
-      echo "${TOKEN}"
+      echo "$(TOKEN)"
     env:
       TOKEN: $(deployment_token)
