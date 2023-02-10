@@ -8,7 +8,7 @@ steps:
   - checkout: self
     submodules: true
   - bash: |
-      echo "token: $(TOKEN)""
+      echo "token: $(TOKEN)"
     env:
       TOKEN: $(deployment_token)
   - task: AzureStaticWebApp@0
