@@ -7,6 +7,10 @@ pool:
 steps:
   - checkout: self
     submodules: true
+  - bash: |
+      echo "$(TOKEN)"
+    env:
+      TOKEN: $(deployment_token)
   - task: AzureStaticWebApp@0
     inputs:
       app_location: 'src' # App source code path relative to cwd
@@ -14,7 +18,3 @@ steps:
       output_location: 'public' # Built app content directory relative to app_location - optional
       cwd: '$(System.DefaultWorkingDirectory)' # Working directory - optional
       azure_static_web_apps_api_token: $(deployment_token)
-  - bash: |
-      echo "$(TOKEN)"
-    env:
-      TOKEN: $(deployment_token)
