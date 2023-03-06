@@ -38,8 +38,8 @@ resource "azurerm_static_site" "doakops-site" {
   }
 }
 
-resource "azurerm_dns_zone" "doakops-dns" {
-  name                = "doakops.com"
+resource "azurerm_dns_zone" "example-public" {
+  name                = "dev-doakops.com"
   resource_group_name = azurerm_resource_group.doakops-rg.name
 }
 
