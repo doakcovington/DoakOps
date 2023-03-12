@@ -28,16 +28,6 @@ resource "azurerm_resource_group" "doakops-rg" {
   }
 }
 
-resource "azurerm_static_site" "doakops-site" {
-  name                = "DoakOps-site"
-  resource_group_name = azurerm_resource_group.doakops-rg.name
-  location            = azurerm_resource_group.doakops-rg.location
-
-  tags = {
-    environment = "dev"
-  }
-}
-
 resource "azurerm_dns_zone" "example-public" {
   name                = "dev-doakops.com"
   resource_group_name = azurerm_resource_group.doakops-rg.name
