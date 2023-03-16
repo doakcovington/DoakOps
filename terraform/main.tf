@@ -21,16 +21,18 @@ provider "azurerm" {
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "doakops-rg" {
-  name     = "DoakOps-resourceGroup"
+  name     = "doakops-prod"
   location = "westus2"
   tags = {
-    environment = "dev"
+    environment = "prd"
   }
 }
 
-resource "azurerm_dns_zone" "example-public" {
-  name                = "dev-doakops.com"
+resource "azurerm_static_site" "example" {
+  name                = "doakops-prod"
   resource_group_name = azurerm_resource_group.doakops-rg.name
+  location            = azurerm_resource_group.doakops-rg.location
 }
+
 
 
