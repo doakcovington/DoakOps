@@ -21,7 +21,7 @@ provider "azurerm" {
 data "azurerm_client_config" "current" {}
 
 variable "resource_group_name" {
-  default = "devops-dev"
+  default = "doakops-dev"
 }
 
 variable "static_site_name" {
