@@ -44,8 +44,8 @@ jobs:
         terraform_wrapper: false
 
     - name: Debug
-      uses: bash
-      script: |
+      shell: bash
+      run: |
         pwd
         ls
 
