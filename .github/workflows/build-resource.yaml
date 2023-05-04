@@ -21,6 +21,11 @@ env:
   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
 
 jobs:
+  debug:
+    name: 'Debug'
+    run: |
+      ${PWD}
+      ls
   terraform-plan:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
