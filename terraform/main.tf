@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "doakops" {
-  name     = "doakops-rg"
+  name     = "RG-DOAKOPS-${var.env}"
   location = "westus2"
 }
 
