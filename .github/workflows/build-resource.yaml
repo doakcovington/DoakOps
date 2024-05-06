@@ -4,8 +4,8 @@ on:
   push:
     branches:
     - main
-    - doak-pro
-    
+    - doak-pr
+
 #Special permissions required for OIDC authentication
 permissions:
   id-token: write
