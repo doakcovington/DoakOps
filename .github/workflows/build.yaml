@@ -1,0 +1,27 @@
+name: Build Azure Static Web App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Build App
+        run: |
+          cd site
+          npm install
+          npm run build
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-build
+          path: site/public
