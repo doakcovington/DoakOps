@@ -1,0 +1,68 @@
+name: Deploy Resources to Azure
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment to dev on push to main
+  workflow_dispatch:  # Allow manual trigger for prod deployment
+
+jobs:
+  deploy-dev:
+    name: Deploy to Dev
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the repository
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # Log in to Azure
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_DEV_CREDENTIALS }}
+
+    # Install Azure CLI and Bicep CLI
+    - name: Install Azure CLI and Bicep
+      run: |
+        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+        az bicep install
+
+    # Deploy the Bicep file to Dev
+    - name: Deploy Bicep File to Dev
+      run: |
+        az deployment group create \
+          --resource-group <dev-resource-group-name> \
+          --template-file infra/doakops-dev-exported-template.bicep \
+          --parameters staticSites_doakops_dev_name=<dev-static-site-name>
+
+  deploy-prod:
+    name: Deploy to Prod
+    runs-on: ubuntu-latest
+    needs: deploy-dev  # Ensure dev deployment completes first
+    if: github.event_name == 'workflow_dispatch'  # Only run on manual trigger
+
+    steps:
+    # Checkout the repository
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # Log in to Azure
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_PROD_CREDENTIALS }}
+
+    # Install Azure CLI and Bicep CLI
+    - name: Install Azure CLI and Bicep
+      run: |
+        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+        az bicep install
+
+    # Deploy the Bicep file to Prod
+    - name: Deploy Bicep File to Prod
+      run: |
+        az deployment group create \
+          --resource-group <prod-resource-group-name> \
+          --template-file infra/doakops-prod-exported-template.bicep \
+          --parameters staticSites_doakops_dev_name=<prod-static-site-name>
