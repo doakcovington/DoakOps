@@ -22,6 +22,10 @@ jobs:
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
         az bicep install
 
+    # Create the output directory
+    - name: Create Output Directory
+      run: mkdir -p compiled-templates
+
     # Validate and Build the Specific Bicep File
     - name: Validate and Build infra/doakops-dev-exported-template.bicep
       run: |
