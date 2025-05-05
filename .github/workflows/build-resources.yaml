@@ -35,6 +35,6 @@ jobs:
     - name: Preview Deployment Changes
       run: |
         az deployment group what-if \
-          --resource-group <dev-resource-group-name> \
+          --resource-group doakops-dev \
           --template-file compiled-templates/doakops-dev-exported-template.json \
-          --parameters staticSites_doakops_dev_name=<dev-static-site-name>
+          --parameters staticSites_doakops_dev_name=doakops-dev
