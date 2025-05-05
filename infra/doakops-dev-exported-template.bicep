@@ -17,7 +17,6 @@ resource staticSites_doakops_dev_name_resource 'Microsoft.Web/staticSites@2024-0
 
 resource staticSites_doakops_dev_name_default 'Microsoft.Web/staticSites/basicAuth@2024-04-01' = {
   parent: staticSites_doakops_dev_name_resource
-  location: 'West US 2'
   name: 'default'
   properties: {
     applicableEnvironmentsMode: 'SpecifiedEnvironments'
