@@ -30,3 +30,11 @@ jobs:
     - name: Validate and Build infra/doakops-dev-exported-template.bicep
       run: |
         az bicep build --file infra/doakops-dev-exported-template.bicep --outdir compiled-templates
+
+    # Preview Deployment Changes with What-If
+    - name: Preview Deployment Changes
+      run: |
+        az deployment group what-if \
+          --resource-group <dev-resource-group-name> \
+          --template-file compiled-templates/doakops-dev-exported-template.json \
+          --parameters staticSites_doakops_dev_name=<dev-static-site-name>
