@@ -37,7 +37,7 @@ jobs:
     - name: Deploy Bicep File to Dev
       run: |
         az deployment group create \
-          --resource-group <dev-resource-group-name> \
+          --resource-group doakops-dev \
           --template-file infra/doakops-dev-exported-template.bicep \
           --parameters staticSites_doakops_dev_name=doakops-dev
 

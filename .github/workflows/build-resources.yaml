@@ -3,7 +3,7 @@ name: Build Specific Bicep File
 on:
   push:  # Trigger on all branches
     branches:
-      - '**'
+      - main
   pull_request:  # Trigger on pull requests
 
 jobs:
