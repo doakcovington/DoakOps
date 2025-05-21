@@ -71,4 +71,4 @@ jobs:
         az deployment group create \
           --resource-group doakops-prod \
           --template-file infra/doakops-prod-exported-template.bicep \
-          --parameters staticSites_doakops_dev_name=doakops-prod
+          --parameters staticSites_doakops_prod_name=doakops-prod
