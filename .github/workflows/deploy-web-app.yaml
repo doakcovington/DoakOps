@@ -7,7 +7,8 @@ env:
 on:
   push:
     branches:
-      - main
+      - main  # Trigger deployment to dev on push to main
+  workflow_dispatch:  # Allow manual trigger for prod deployment
 
 permissions:
   issues: write
@@ -35,6 +36,7 @@ jobs:
   build_and_deploy_prod:
     runs-on: ubuntu-latest
     name: Build and Deploy to Prod
+    if: github.event_name == 'workflow_dispatch'  # Only run on manual trigger
     steps:
       - uses: actions/checkout@v4
         with:
